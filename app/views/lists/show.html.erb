@@ -1,0 +1,7 @@
+<h2>タイトル</h2>
+<p><%= @list.title %></p>
+
+<h2>本文</h2>
+<p><%= @list.body %></p>
+<!--URL末尾の数字によって、id毎に1つのレコードが呼び出されている-->
+<%= link_to "編集", edit_list_path(@list.id) %>
