@@ -29,9 +29,15 @@ describe '投稿のテスト' do
       end
     end
     context '投稿処理のテスト' do
+      # before do |list|
+      #   # ActiveStorageの場合
+      #   list.image.attach(io: File.open('spec/fixtures/test_image.jpg'), filename: 'test_image.jpg')
+      # end
       it '投稿後のリダイレクト先は正しいか' do
         fill_in 'list[title]', with: Faker::Lorem.characters(number:10)
         fill_in 'list[body]', with: Faker::Lorem.characters(number:30)
+        attach_file 'list[image]', "#{Rails.root}/spec/fixtures/test_image.jpg"
+        # fill_in 'list[image]', fixture_file_upload('spec/fixtures/test_image.jpg')
         click_button '投稿'
         expect(page).to have_current_path list_path(List.last)
       end
